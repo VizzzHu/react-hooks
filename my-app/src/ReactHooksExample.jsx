@@ -3,11 +3,12 @@ import Row from './Row';
 
 const ReactHooksExample = (props) => {
   return (
-    <section>
+    <div className="column">
+      <p>React Hooks Example </p>
       <Row label="Name">
         <input />
       </Row>
-    </section>
+    </div>
   );
 };
 

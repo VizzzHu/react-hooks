@@ -17,14 +17,15 @@ export default class OldReactExample extends React.Component {
 
   render() {
     return (
-      <section>
+      <div className="column">
+        <p>Old React Example </p>
         <Row label="Name">
           <input 
             value={this.state.name}
             onChange={this.handleNameChange}
           />
         </Row>
-      </section>
+      </div>
     );
   }
 }
