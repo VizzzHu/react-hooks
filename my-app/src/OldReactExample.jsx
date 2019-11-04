@@ -1,5 +1,6 @@
 import React from 'react';
 import Row from './Row';
+import { ThemeContext, themes } from './ThemeContext';
 
 export default class OldReactExample extends React.Component {
   constructor(props) {
@@ -24,21 +25,23 @@ export default class OldReactExample extends React.Component {
 
   render() {
     return (
-      <div className="column">
-        <p>Old React Example </p>
-        <Row label="Name">
-          <input 
-            value={this.state.name}
-            onChange={this.handleNameChange}
-          />
-        </Row>
-        <Row label="Surname">
-          <input
-            value={this.state.surname}
-            onChange={this.handleSurnameChange}
-          />
-        </Row>
-      </div>
+      <ThemeContext.Provider value={themes.light}>
+        <div className="column">
+          <p>Old React Example </p>
+          <Row label="Name">
+            <input 
+              value={this.state.name}
+              onChange={this.handleNameChange}
+            />
+          </Row>
+          <Row label="Surname">
+            <input
+              value={this.state.surname}
+              onChange={this.handleSurnameChange}
+            />
+          </Row>
+        </div>
+      </ThemeContext.Provider>
     );
   }
 }
