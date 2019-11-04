@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Row from './Row';
+import { ThemeContext } from './ThemeContext';
 
 const ReactHooksExample = (props) => {
   const [name, setName] = useState('Mary');
   const [surname, setSurname] = useState('Smith');
+  const theme = useContext(ThemeContext);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -14,7 +16,7 @@ const ReactHooksExample = (props) => {
   }
 
   return (
-    <div className="column">
+    <div className="column" style={{ 'backgroundColor': theme.backgroundColor, 'color': theme.fontColor }}>
       <p>React Hooks Example </p>
       <Row label="Name">
         <input 

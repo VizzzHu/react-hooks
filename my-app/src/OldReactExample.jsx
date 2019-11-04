@@ -1,8 +1,10 @@
 import React from 'react';
 import Row from './Row';
-import { ThemeContext, themes } from './ThemeContext';
+import { ThemeContext } from './ThemeContext';
 
 export default class OldReactExample extends React.Component {
+  static contextType = ThemeContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,24 +26,24 @@ export default class OldReactExample extends React.Component {
   }
 
   render() {
+    const { fontColor, backgroundColor } = this.context;
+
     return (
-      <ThemeContext.Provider value={themes.light}>
-        <div className="column">
-          <p>Old React Example </p>
-          <Row label="Name">
-            <input 
-              value={this.state.name}
-              onChange={this.handleNameChange}
-            />
-          </Row>
-          <Row label="Surname">
-            <input
-              value={this.state.surname}
-              onChange={this.handleSurnameChange}
-            />
-          </Row>
-        </div>
-      </ThemeContext.Provider>
+      <div className="column" style={{ 'backgroundColor': backgroundColor, 'color': fontColor }}>
+        <p>Old React Example </p>
+        <Row label="Name">
+          <input 
+            value={this.state.name}
+            onChange={this.handleNameChange}
+          />
+        </Row>
+        <Row label="Surname">
+          <input
+            value={this.state.surname}
+            onChange={this.handleSurnameChange}
+          />
+        </Row>
+      </div>
     );
   }
 }
