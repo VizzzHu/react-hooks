@@ -3,9 +3,14 @@ import Row from './Row';
 
 const ReactHooksExample = (props) => {
   const [name, setName] = useState('Mary');
+  const [surname, setSurname] = useState('Smith');
 
   const handleNameChange = (e) => {
     setName(e.target.value);
+  }
+
+  const handleSurnameChange = (e) => {
+    setSurname(e.target.value);
   }
 
   return (
@@ -15,6 +20,12 @@ const ReactHooksExample = (props) => {
         <input 
           value={name}
           onChange={handleNameChange}
+        />
+      </Row>
+      <Row label="Surname">
+        <input
+          value={surname}
+          onChange={handleSurnameChange}
         />
       </Row>
     </div>
