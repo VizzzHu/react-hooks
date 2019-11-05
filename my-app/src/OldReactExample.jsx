@@ -13,6 +13,14 @@ export default class OldReactExample extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.title = 'Old:' + this.state.name;
+  }
+
+  componentDidUpdate() {
+    document.title = 'Old:' + this.state.name;
+  }
+
   handleNameChange = (e) => {
     this.setState({
       name: e.target.value,
