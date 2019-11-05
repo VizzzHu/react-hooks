@@ -5,11 +5,19 @@ import { ThemeContext } from './ThemeContext';
 const ReactHooksExample = (props) => {
   const [name, setName] = useState('Mary');
   const [surname, setSurname] = useState('Smith');
+  const [width, setWidth] = useState(window.innerWidth);
   const theme = useContext(ThemeContext);
 
 
   useEffect(() => {
     document.title = 'New:' + name;
+  })
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize);
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    }
   })
 
   const handleNameChange = (e) => {
@@ -18,6 +26,10 @@ const ReactHooksExample = (props) => {
 
   const handleSurnameChange = (e) => {
     setSurname(e.target.value);
+  }
+
+  const handleWindowResize = () => {
+    setWidth(window.innerWidth);
   }
 
   return (
@@ -35,6 +47,9 @@ const ReactHooksExample = (props) => {
           onChange={handleSurnameChange}
         />
       </Row>
+      <Row label="Width">
+          <div>{width}</div>
+        </Row>
     </div>
   );
 };

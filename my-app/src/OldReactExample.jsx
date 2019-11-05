@@ -10,15 +10,21 @@ export default class OldReactExample extends React.Component {
     this.state = {
       name: 'Mary',
       surname: 'Smith',
+      width: window.innerWidth,
     };
   }
 
   componentDidMount() {
     document.title = 'Old:' + this.state.name;
+    window.addEventListener('resize', this.handleWindowResize);
   }
 
   componentDidUpdate() {
     document.title = 'Old:' + this.state.name;
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowResize);
   }
 
   handleNameChange = (e) => {
@@ -31,6 +37,12 @@ export default class OldReactExample extends React.Component {
     this.setState({
       surname: e.target.value,
     })
+  }
+
+  handleWindowResize = (e) => {
+    this.setState({
+      width: window.innerWidth,
+    });
   }
 
   render() {
@@ -50,6 +62,9 @@ export default class OldReactExample extends React.Component {
             value={this.state.surname}
             onChange={this.handleSurnameChange}
           />
+        </Row>
+        <Row label="Width">
+          <div>{this.state.width}</div>
         </Row>
       </div>
     );
