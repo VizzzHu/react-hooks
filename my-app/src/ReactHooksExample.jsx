@@ -2,22 +2,31 @@ import React, { useState, useContext, useEffect } from 'react';
 import Row from './Row';
 import { ThemeContext } from './ThemeContext';
 
-const ReactHooksExample = (props) => {
-  const [name, setName] = useState('Mary');
-  const [surname, setSurname] = useState('Smith');
+const useWindowWidth = () => {
   const [width, setWidth] = useState(window.innerWidth);
-  const theme = useContext(ThemeContext);
 
-
-  useEffect(() => {
-    document.title = 'New:' + name;
-  })
+  const handleWindowResize = () => {
+    setWidth(window.innerWidth);
+  }
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     }
+  });
+
+  return width;
+}
+
+const ReactHooksExample = (props) => {
+  const [name, setName] = useState('Mary');
+  const [surname, setSurname] = useState('Smith');
+  const theme = useContext(ThemeContext);
+  const width = useWindowWidth();
+
+  useEffect(() => {
+    document.title = 'New:' + name;
   })
 
   const handleNameChange = (e) => {
@@ -28,9 +37,7 @@ const ReactHooksExample = (props) => {
     setSurname(e.target.value);
   }
 
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-  }
+  
 
   return (
     <div className="column" style={{ 'backgroundColor': theme.backgroundColor, 'color': theme.fontColor }}>
